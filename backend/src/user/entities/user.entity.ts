@@ -9,7 +9,7 @@ import {
 import { IsEmail, Length } from 'class-validator';
 import { Wish } from '../../wish/entities/wish.entity';
 import { Offer } from '../../offer/entities/offer.entity';
-import { Wishlist } from '../../wishlist/entities/wishlist.entiry';
+import { Wishlist } from '../../wishlist/entities/wishlist.entity';
 
 @Entity()
 export class User {

@@ -21,6 +21,7 @@
     "migrate:generate": "typeorm-ts-node-commonjs -d src/ormconfig.ts migration:generate ./src/migrations/Migration",
     "migrate:create": "typeorm-ts-node-commonjs migration:create ./src/migrations/Migration",
     "migrate:up": "typeorm-ts-node-commonjs -d src/ormconfig.ts migration:run",
+    "migrate:up:prod": "typeorm -d ormconfig.prod.js migration:run",
     "migrate:down": "typeorm-ts-node-commonjs -d src/ormconfig.ts migration:revert"
   },
   "dependencies": {
@@ -42,7 +43,7 @@
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.25"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

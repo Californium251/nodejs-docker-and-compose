@@ -1,0 +1,18 @@
+FROM node:22-alpine as builder
+WORKDIR /app
+COPY ./backend/package.json ./backend/package-lock.json ./
+RUN npm ci
+COPY ./backend ./
+RUN npm run build
+
+FROM node:22-alpine as prod
+WORKDIR /app
+COPY --from=builder /app/package.json /app/package-lock.json ./
+RUN npm ci --omit=dev
+COPY --from=builder /app/dist ./dist
+COPY ./backend/ormconfig.prod.js ./ormconfig.prod.js
+RUN npm install pm2 -g
+
+EXPOSE 3000
+
+CMD ["pm2-runtime", "dist/main.js"]

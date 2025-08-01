@@ -8,6 +8,6 @@ async function bootstrap() {
   app.enableCors({ origin: '*' });
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
-  await app.listen(3001);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

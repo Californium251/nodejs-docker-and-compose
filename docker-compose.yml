@@ -1,0 +1,44 @@
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - kupi-podari-daj-network
+  
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.backend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+    networks:
+      - kupi-podari-daj-network
+    env_file:
+      - ./backend/.env
+
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./backend/.env
+    networks:
+      - kupi-podari-daj-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+networks:
+  kupi-podari-daj-network:
+    driver: bridge
+      
+    
