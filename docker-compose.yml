@@ -3,16 +3,12 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.frontend
-      args:
-        PUBLIC_URL: ${PUBLIC_URL:-}
     ports:
       - "127.0.0.1:8080:80"
     depends_on:
       - backend
     networks:
       - kupi-podari-daj-network
-    env_file:
-      - ./frontend/.env
   
   backend:
     build:

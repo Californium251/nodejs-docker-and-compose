@@ -4,12 +4,17 @@ COPY ./frontend/package.json ./frontend/package-lock.json ./
 RUN npm ci
 COPY ./frontend ./
 
-# Принимаем PUBLIC_URL как аргумент сборки
-ARG PUBLIC_URL
-ENV PUBLIC_URL=$PUBLIC_URL
+# Отладочная информация
+RUN echo "Building React app at $(date)"
+RUN echo "Homepage from package.json:"
+RUN cat package.json | grep homepage
 
-# Собираем проект с учетом PUBLIC_URL
+# Собираем проект (homepage из package.json будет использован автоматически)
 RUN npm run build
+
+# Проверим что получилось в index.html
+RUN echo "=== Generated index.html ==="
+RUN cat build/index.html | grep -E "(static|favicon)" || echo "No static assets found"
 
 FROM nginx:stable-alpine
 COPY --from=builder /app/build /usr/share/nginx/html

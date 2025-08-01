@@ -2,6 +2,7 @@
   "name": "kpd",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/kupi-podari-day",
   "dependencies": {
     "@nestjs/mapped-types": "*",
     "@nestjs/typeorm": "^10.0.2",
