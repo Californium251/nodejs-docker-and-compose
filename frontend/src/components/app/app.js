@@ -59,8 +59,11 @@ const ApplicationView = () => {
     return <></>;
   }
 
+  // Получаем базовый путь из переменных окружения времени сборки
+  const basename = process.env.PUBLIC_URL || '';
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Header />
       <main className={styles.content}>
         <Switch>
