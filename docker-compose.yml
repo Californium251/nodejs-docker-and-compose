@@ -1,5 +1,7 @@
 services:
   frontend:
+    container_name: kupi-podari-daj-frontend
+    restart: unless-stopped
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
@@ -11,6 +13,8 @@ services:
       - kupi-podari-daj-network
   
   backend:
+    container_name: kupi-podari-daj-backend
+    restart: unless-stopped
     build:
       context: ./backend
       dockerfile: Dockerfile.backend
@@ -24,6 +28,8 @@ services:
       - ./backend/.env
 
   postgres:
+    container_name: kupi-podari-daj-postgres
+    restart: unless-stopped
     image: postgres:17-alpine
     ports:
       - "127.0.0.1:5433:5432"
