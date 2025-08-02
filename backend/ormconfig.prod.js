@@ -14,5 +14,4 @@ module.exports = new DataSource({
     'dist/offer/entities/offer.entity.js'
   ],
   migrations: ['dist/migrations/*.js'],
-  synchronize: true,
 }); 
