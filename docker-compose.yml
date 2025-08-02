@@ -25,7 +25,7 @@ services:
     networks:
       - kupi-podari-daj-network
     env_file:
-      - ./backend/.env
+      - ./.env
 
   postgres:
     container_name: kupi-podari-daj-postgres
@@ -34,7 +34,7 @@ services:
     ports:
       - "127.0.0.1:5433:5432"
     env_file:
-      - ./backend/.env
+      - ./.env
     networks:
       - kupi-podari-daj-network
     volumes:
